@@ -5,6 +5,7 @@ GIT_ALIASES="
     l = log
     l = log
     p = pull
+    ps = pull
     st = status
     co = checkout
     br = branch
