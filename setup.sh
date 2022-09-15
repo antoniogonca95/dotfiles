@@ -3,7 +3,6 @@
 GIT_ALIASES="
 [alias]
     l = log
-    l = log
     p = pull
     ps = push
     st = status
@@ -18,8 +17,10 @@ GIT_ALIASES="
     cm = commit --message
     cma = commit --message --all
     cia = commit --amend
-    rc = rebase --continue
-    ra = rebase --abort
+    rb = rebase 
+    rbc = rebase --continue
+    rba = rebase --abort
+    r = reset
     rh = reset --hard
     pro = pull --rebase origin master
 "
