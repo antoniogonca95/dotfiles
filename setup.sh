@@ -23,6 +23,7 @@ GIT_ALIASES="
     r = reset
     rh = reset --hard
     pro = pull --rebase origin master
+    conflicts = diff --name-only --diff-filter=U
 "
 
 echo "$GIT_ALIASES" >> ~/.gitconfig
