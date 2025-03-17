@@ -31,6 +31,5 @@ echo "$GIT_ALIASES" >> ~/.gitconfig
 
 git config --global push.default current
 
-# cp ~/.dotfiles/.bash_aliases ~/.bash_aliases
 echo "alias g='git'" >> ~/.bash_aliases
 . ~/.bashrc
