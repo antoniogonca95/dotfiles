@@ -32,4 +32,4 @@ echo "$GIT_ALIASES" >> ~/.gitconfig
 git config --global push.default current
 
 echo "alias g='git'" >> ~/.bash_aliases
-. ~/.bashrc
+source ~/.bashrc
