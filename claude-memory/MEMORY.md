@@ -1,0 +1,3 @@
+- [Understand the model before building](understand-model-before-building.md) — derive consequences across the feature; don't patch each answer locally
+- [Verify assumptions in this repo](verify-assumptions-in-this-repo.md) — read the validator, constraint or gate before asserting behaviour
+- [Prefer existing primitives](prefer-existing-primitives.md) — search for an existing service/model method before writing a new one

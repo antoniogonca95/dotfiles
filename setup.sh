@@ -33,3 +33,12 @@ git config --global push.default current
 
 echo "alias g='git'" >> ~/.bash_aliases
 source ~/.bashrc
+
+# Claude Code project memory lives in the workspace, which is recreated each time,
+# so seed it from the dotfiles copy. -n keeps any memory updated during a session.
+CLAUDE_MEMORY_SRC="$HOME/.config/coderv2/dotfiles/claude-memory"
+CLAUDE_MEMORY_DIR="$HOME/.claude/projects/-workspaces-shares/memory"
+if [ -d "$CLAUDE_MEMORY_SRC" ]; then
+  mkdir -p "$CLAUDE_MEMORY_DIR"
+  cp -n "$CLAUDE_MEMORY_SRC"/*.md "$CLAUDE_MEMORY_DIR/" 2>/dev/null || true
+fi
