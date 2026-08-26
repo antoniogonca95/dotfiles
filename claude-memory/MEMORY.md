@@ -3,3 +3,4 @@
 - [Prefer existing primitives](prefer-existing-primitives.md) — search for an existing service/model method before writing a new one
 - [Record repeated corrections](record-repeated-corrections.md) — write a memory when the same correction recurs or something is ruled out, and mirror it to dotfiles
 - [Keep comments minimal](keep-comments-minimal.md) — match the repo's near-zero density; only the non-obvious why
+- [Prefer concise responses](prefer-concise-responses.md) — short answers and short plans; no preamble or recap
