@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: af143b28-e6cc-4891-a320-e9f4137a07af
-  modified: 2026-08-26T14:24:19.788Z
+  modified: 2026-08-26T14:42:02.455Z
 ---
 
 Do not describe repo behaviour from a plausible reading. Open the validator, the
@@ -31,16 +31,26 @@ second attempt fails, stop and ask for feedback and context — do not keep
 iterating, and do not go hunting for evidence that the requirement is impossible.
 Say what I tried, what happened, and what I think is blocking.
 
-**Run tests only through the `pnpm` scripts in `package.json`.** In
-`projects/backend` the integration suites are `pnpm test:integration` (which uses
-`jest.config.integration.js`), and a single file or case is
-`pnpm test:integration <pattern>` / `-t "<name>"`. `pnpm test` runs the full
-lifecycle — it kills ports 3019/3020/PORT and re-inits the environment via
-`scripts/test.sh`. On 2026-08-26 I instead hand-rolled
-`env DOTENV_FLOW_SILENT=true ENVIRONMENT=test TZ=utc pnpm test:runner <pattern>`,
-skipping the integration jest config and the port/env setup, which is how I ended
-up chasing phantom failures. Never invent an invocation; read `package.json`
-first.
+**Running one integration test in `projects/backend`** — Antonio's command, use
+this shape:
+
+```
+pnpm start:wait && pnpm start:test:wait && pnpm jest:int <path/to/file.integration.test.ts> -t '<full test name>'
+```
+
+`start:wait` / `start:test:wait` block until the API and tests server are actually
+up (`scripts/wait_for_backend.sh`, `wait_for_test_server.sh`), which removes the
+staleness guesswork. `jest:int` is the bare integration runner with no baked-in
+pattern, so a file path plus `-t` narrows to a single case. The full-lifecycle
+option is `pnpm test` (`scripts/test.sh` kills ports 3019/3020/PORT and re-inits).
+
+Do NOT use `pnpm test:integration <pattern>`: its script already ends in
+`.*/*.integration.test.ts`, so an extra argument is a *second* pattern and jest
+runs every integration suite in the repo — on 2026-08-26 that ran past a 10-minute
+timeout for a suite that takes ~10s. And do not hand-roll
+`env DOTENV_FLOW_SILENT=true ENVIRONMENT=test TZ=utc pnpm test:runner ...`, which
+skips the integration jest config entirely. Read `package.json` before inventing
+an invocation.
 
 **Report a failing new test immediately, with its cause.** When a test I just
 wrote fails, say so in that turn — concisely: which test, the actual vs expected
