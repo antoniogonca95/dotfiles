@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 75215008-fff8-4644-8d35-4a328274fcdc
-  modified: 2026-08-24T11:44:22.686Z
+  modified: 2026-08-26T13:21:38.757Z
 ---
 
 Antonio has asked three times across sessions for fewer and shorter comments.
@@ -28,3 +28,15 @@ reference scripts/, so the logic lives here"). Never add a JSDoc header that jus
 restates the signature, and never narrate control flow. If a comment explains
 *what*, delete it; if it explains *why not*, keep it short.
 See [[record-repeated-corrections]].
+
+**No redundancy across comments.** On 2026-08-26 (filled order corrections for
+campaign/VP) I explained the same funding rule — campaign raises one request, a
+standalone voluntary payment none, a non-campaign matching contribution the
+per-company sweep — in the dispatch function and again in two test headers, plus
+comments in e2e specs and a BO column list that only restated the assertion or
+column name on the next line. State a shared rule once, at the code that
+implements it; each other site gets only what is unique to it, or nothing.
+
+**Never write a comment from the diff's point of view.** "used to call X
+unconditionally", "now also handles Y" — the reader has no before-state. Describe
+the invariant that holds, not the change being made.
