@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: af143b28-e6cc-4891-a320-e9f4137a07af
-  modified: 2026-08-26T14:19:46.421Z
+  modified: 2026-08-26T14:24:19.788Z
 ---
 
 Do not describe repo behaviour from a plausible reading. Open the validator, the
@@ -31,14 +31,30 @@ second attempt fails, stop and ask for feedback and context — do not keep
 iterating, and do not go hunting for evidence that the requirement is impossible.
 Say what I tried, what happened, and what I think is blocking.
 
+**Run tests only through the `pnpm` scripts in `package.json`.** In
+`projects/backend` the integration suites are `pnpm test:integration` (which uses
+`jest.config.integration.js`), and a single file or case is
+`pnpm test:integration <pattern>` / `-t "<name>"`. `pnpm test` runs the full
+lifecycle — it kills ports 3019/3020/PORT and re-inits the environment via
+`scripts/test.sh`. On 2026-08-26 I instead hand-rolled
+`env DOTENV_FLOW_SILENT=true ENVIRONMENT=test TZ=utc pnpm test:runner <pattern>`,
+skipping the integration jest config and the port/env setup, which is how I ended
+up chasing phantom failures. Never invent an invocation; read `package.json`
+first.
+
 **Report a failing new test immediately, with its cause.** When a test I just
 wrote fails, say so in that turn — concisely: which test, the actual vs expected
-result, and my current read of why. State explicitly whether a local server needs
-restarting, because stale dev servers are a recurring false signal here: the
-tests server (3018) does not pick up a newly registered `createTestRouter` route
-without a restart, and the API (3010) can serve an old query after an edit. Both
-produced misleading 404s and 200s on 2026-08-26. Never present a green summary
-while a new test is red, and never silently keep retrying.
+result, and my current read of why. Never present a green summary while a new
+test is red, and never silently keep retrying.
+
+**If servers look stale, ask Antonio to restart them.** Do not kill, respawn, or
+probe processes myself. On 2026-08-26 killing the tests-server worker took down
+the API (3010) and the mock server (3019) with it, and I then burned a long
+stretch restarting them, recreating `projects/backend/logs/`, and misreading
+`/health` responses. Stale servers are a recurring false signal here — the tests
+server does not pick up a newly registered `createTestRouter` route without a
+restart, and the API can serve an old query after an edit, producing misleading
+404s and 200s. Say which server I think is stale and why, then wait.
 
 **A failing test I wrote is a signal to stop, not a puzzle to theorise about.**
 On 2026-08-26 my new guard test returned 200 instead of 400. Instead of rechecking
