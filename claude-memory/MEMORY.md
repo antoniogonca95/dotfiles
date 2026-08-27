@@ -4,3 +4,5 @@
 - [Record repeated corrections](record-repeated-corrections.md) — write a memory when the same correction recurs or something is ruled out, and mirror it to dotfiles
 - [Keep comments minimal](keep-comments-minimal.md) — match the repo's near-zero density; only the non-obvious why
 - [Prefer concise responses](prefer-concise-responses.md) — short answers and short plans; no preamble or recap
+- [Don't recite code back to its author](dont-recite-code-back-to-its-author.md) — analysing a reference feature means report deltas only, not a walkthrough
+- [Subagent reports are not deliverables](subagent-reports-are-not-deliverables.md) — digest agent output; never relay its checklists or quotes
