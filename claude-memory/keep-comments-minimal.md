@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 75215008-fff8-4644-8d35-4a328274fcdc
-  modified: 2026-08-26T13:21:38.757Z
+  modified: 2026-08-27T08:48:05.076Z
 ---
 
 Antonio has asked three times across sessions for fewer and shorter comments.
@@ -40,3 +40,10 @@ implements it; each other site gets only what is unique to it, or nothing.
 **Never write a comment from the diff's point of view.** "used to call X
 unconditionally", "now also handles Y" — the reader has no before-state. Describe
 the invariant that holds, not the change being made.
+
+**A vanished comment was Antonio, never a formatter.** No linter, prettier or
+codegen in this repo strips comments. On 2026-08-27 comments I had written above a
+partial index in a migration disappeared between edits; I attributed it to a
+formatter in a user-visible message. He had deleted them. If a comment I wrote is
+gone from disk, treat it as a deliberate edit and a signal the comment was not
+wanted — do not re-add it, and do not blame tooling.
