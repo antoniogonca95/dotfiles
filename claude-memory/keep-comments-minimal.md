@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 75215008-fff8-4644-8d35-4a328274fcdc
-  modified: 2026-08-27T08:48:05.076Z
+  modified: 2026-09-01T16:56:18.081Z
 ---
 
 Antonio has asked three times across sessions for fewer and shorter comments.
@@ -36,6 +36,13 @@ per-company sweep — in the dispatch function and again in two test headers, pl
 comments in e2e specs and a BO column list that only restated the assertion or
 column name on the next line. State a shared rule once, at the code that
 implements it; each other site gets only what is unique to it, or nothing.
+
+**Hard limit: no comment may exceed 3 lines.** Given as a rule on 2026-09-01
+(LIMA-435 employee merge) after I wrote a 19-line JSDoc block weighing two
+approaches to a trigger toggle, plus numbered step-by-step narration over every
+SQL statement in the same file. This is a ceiling, not a target — most comments
+should still be one line, and the default is none. A "why" that genuinely needs
+more than 3 lines belongs in the PR description or the ticket, not the source.
 
 **Never write a comment from the diff's point of view.** "used to call X
 unconditionally", "now also handles Y" — the reader has no before-state. Describe
