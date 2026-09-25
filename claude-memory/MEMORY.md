@@ -6,3 +6,4 @@
 - [Prefer concise responses](prefer-concise-responses.md) — short answers and short plans; no preamble or recap
 - [Don't recite code back to its author](dont-recite-code-back-to-its-author.md) — analysing a reference feature means report deltas only, not a walkthrough
 - [Subagent reports are not deliverables](subagent-reports-are-not-deliverables.md) — digest agent output; never relay its checklists or quotes
+- [Local integration tests](local-integration-tests.md) — run jest:int against the user's dev stack; never scripts/test.sh; PG on 5439
